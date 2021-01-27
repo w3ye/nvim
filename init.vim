@@ -8,6 +8,7 @@ Plug 'preservim/nerdtree'
 Plug 'ap/vim-css-color'
 " auto bracket pairs
 Plug 'jiangmiao/auto-pairs' 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -51,5 +52,4 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 " Move to split left
 nnoremap <C-H> <C-W><C-H>
-" Enable folding with the spacebar
-" nnoremap <space> za
+
