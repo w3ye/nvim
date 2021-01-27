@@ -6,6 +6,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 " give hex text colour
 Plug 'ap/vim-css-color'
+" auto bracket pairs
+Plug 'jiangmiao/auto-pairs' 
 
 call plug#end()
 
@@ -35,7 +37,19 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 " -------------------------Keymap------------------------------
+" NERDTree Keymaps ****
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+" Split navigation ****
+" Move to split below
+nnoremap <C-J> <C-W><C-J>
+" Move to split above
+nnoremap <C-K> <C-W><C-K>
+"Move to split right
+nnoremap <C-L> <C-W><C-L>
+" Move to split left
+nnoremap <C-H> <C-W><C-H>
+" Enable folding with the spacebar
+" nnoremap <space> za
