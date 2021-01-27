@@ -22,6 +22,20 @@ set expandtab
 set noshowmode
 
 " -------------------------Plugin config------------------------------
+" setting colour scheme for lightline
 let g:lightline ={
     \ 'colorscheme': 'darcula',
     \ }
+
+" Exit Vim if NERDTree is the only window left
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+" NERDTree changing default arrows
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+" -------------------------Keymap------------------------------
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
