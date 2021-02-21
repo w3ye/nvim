@@ -1,0 +1,6 @@
+{
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "suggest.enablePreselect": false,
+    "suggest.noselect": true,
+    "diagnostic.refreshOnInsertMode": false
+}
