@@ -1,6 +1,5 @@
-" -------------------------PLUGIN------------------------------
-call plug#begin('~/AppData/Local/plugged')
-
+" === PLUG 
+call plug#begin()
 Plug 'itchyny/lightline.vim'
 " :NERDTree command
 Plug 'preservim/nerdtree'
@@ -8,27 +7,51 @@ Plug 'preservim/nerdtree'
 Plug 'ap/vim-css-color'
 " COC - Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+" Onedark color scheme
+Plug 'joshdick/onedark.vim'
+" Install fugitive
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
-" -------------------------Config------------------------------
-" number lines
-set nu
-" show existing tab with 4 spaces width
+" === Base Config
+" set line number
+set nu 
+" show existing tab with 4 spaces width 
 set tabstop=4
-" when indenting with '>', use 4 spaces width
+" when indenting with '>'. use 4 spaces width
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 " removing --INSERT-- at the bottom
 set noshowmode
+" tab key insert 'tab stops' and backspace delete tabs
+set smarttab
+" match indents on new lines
+set autoindent
+" Intellegently dedent / indent new lines based on rules
+set smartindent
+" no backups
+set nobackup
+set nowritebackup
+set noswapfile
+" case insensitive search
+set ignorecase
+" If there is an uppercase then become case sensitive
+set smartcase
 
-" -------------------------Plugin config------------------------------
-" setting colour scheme for lightline
-let g:lightline ={
-    \ 'colorscheme': 'darcula',
-    \ }
 
+" === lightline config
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'gitbranch'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \ },
+      \ }
+" === NERDTree config
 " Exit Vim if NERDTree is the only window left
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
@@ -36,11 +59,15 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " NERDTree changing default arrows
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-" -------------------------COC-Config----------------------------------
-" COC path
-let g:coc_node_path = 'C://Program Files/nodejs/node'
+" NERDTree Keymaps
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" === COC Config
 " COC install modules
-let g:coc_global_extensions = ['coc-json', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-python', 'coc-java']
 " TextEdit might fail if hidden is not set.
 set hidden
 " Don't pass message to | ins-completion-menu|.
@@ -85,13 +112,8 @@ nmap <leader>rn <Plug>(coc-rename)
 " " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
-" -------------------------Keymap------------------------------
-" NERDTree Keymaps ****
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-" Split navigation ****
+
+" === Keymaps
 " Move to split below
 nnoremap <C-J> <C-W><C-J>
 " Move to split above
@@ -100,4 +122,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 " Move to split left
 nnoremap <C-H> <C-W><C-H>
+" set ; to : 
+nnoremap ; :
+vnoremap ; :
+" clear match history
+nnoremap <leader><space> :noh<cr>: call clearmatches()<cr>
 
+"Set color scheme
+colorscheme onedark
